@@ -1,0 +1,16 @@
+{
+  "name": "pizzaria",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "devDependencies": {
+    "@types/node": "^18.15.3",
+    "@types/react": "^18.0.28",
+    "typescript": "^4.9.5"
+  }
+}
