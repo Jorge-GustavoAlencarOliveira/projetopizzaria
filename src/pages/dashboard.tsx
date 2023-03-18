@@ -24,35 +24,43 @@ const Dashboard = ({ordersList}:listProps) => {
   function handleModal(order_id : string){
     alert(order_id)
   }
+  if(ordersList){
+    return (
+      <>
+        <Head>
+          <title>Painel - Sujeito Pizzaria</title>
+        </Head>
+        <Header />
+        <main className={styles.container}>
+          <div className={styles.header}>
+            <h1>Últimos pedidos</h1>
+            <button>
+              <FiRefreshCcw size={25} color='3fffa3'/>
+            </button>
+          </div>
+          <article className={styles.listOrders}>
+            {orders.map(item => {
+              return(
+                <section key={item.id} className={styles.orderItem}>
+                  <button onClick={() => handleModal(item.id)}>
+                    <div className={styles.tag}></div>
+                    <span>Mesa {item.table}</span>
+                  </button>
+                </section>
+              )
+            })}
+          </article>
+        </main>
+      </>
+    )
+  } else{
+    return(
+      <>
+        Dashboard
+      </>
+    )
+  }
 
-  return (
-    <>
-      <Head>
-        <title>Painel - Sujeito Pizzaria</title>
-      </Head>
-      <Header />
-      <main className={styles.container}>
-        <div className={styles.header}>
-          <h1>Últimos pedidos</h1>
-          <button>
-            <FiRefreshCcw size={25} color='3fffa3'/>
-          </button>
-        </div>
-        <article className={styles.listOrders}>
-          {orders.map(item => {
-            return(
-              <section key={item.id} className={styles.orderItem}>
-                <button onClick={() => handleModal(item.id)}>
-                  <div className={styles.tag}></div>
-                  <span>Mesa {item.table}</span>
-                </button>
-              </section>
-            )
-          })}
-        </article>
-      </main>
-    </>
-  )
 }
 
 export default Dashboard
