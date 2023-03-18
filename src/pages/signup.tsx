@@ -7,28 +7,29 @@ import {Input} from "@/Components/Input";
 import { Button } from "@/Components/Button";
 import Link from "next/link";
 import { AuthContext } from "@/Contexts/AuthContext";
-import { canSSRGuest } from "@/Utils/CanSSRGuest";
 
-
-export default function Home() {
-  const {signIn} = useContext(AuthContext);
+export default function Singup() {
+  const {signUp} = useContext(AuthContext);
+  const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
 
   async function handlelogin(event:FormEvent) {
     event.preventDefault();
-    if (email === '' || password === ''){
+    if (name === '' || email === '' || password === ''){
       alert('preencha os dados')
       return
     }
-      setLoading(true);
-      await signIn({
-        email: email,
-        password: password
-      })    
-   
-      setLoading(false)
+    setLoading(true);
+    
+    await signUp({
+      name: name,
+      email: email,
+      password: password
+    })
+    
+    setLoading(false)
     
   }
   return (
@@ -39,7 +40,14 @@ export default function Home() {
      <div className={styles.container}>
       <Image src={Logo} alt='logo'/>
       <div className={styles.login}>
+        <h1>Criando a sua conta</h1>
         <form onSubmit={handlelogin}>
+          <Input 
+            type='text'
+            placeholder='Digite seu nome'
+            value={name}
+            onChange={({target}) => setName(target.value)}
+          />
           <Input 
             type='text'
             placeholder='Digite seu email'
@@ -56,13 +64,13 @@ export default function Home() {
             type='submit'
             Loading={loading}
           >
-            Acessar
+            Cadastrar
           </Button>
         </form>
         <Link
-          href='/signup'
+          href='/'
           className={styles.link}>
-          Não possui uma conta? Cadastre-se
+            Já possui conta? Faça o login.
         </Link>
       </div>
      </div>
@@ -70,8 +78,3 @@ export default function Home() {
   )
 }
 
-export const getServerSideProps = canSSRGuest(async (ctx) => {
-   return {
-    props:{}
-  } 
-})

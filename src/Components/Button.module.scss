@@ -1,0 +1,32 @@
+.button{
+  max-width: 600px;
+  background-color: var(--red-900);
+  border: 0;
+  padding: .4rem;
+  color: var(--white);
+  border-radius: .5rem;
+  transition: filter .2s;
+  &[disabled]{
+    cursor: not-allowed;
+    svg{
+      animation: buttonanime 2s infinite
+    }
+  }
+  &:hover{
+    filter: brightness(1.4)
+  }
+
+}
+
+.textButton{
+  color: var(--white);
+}
+
+@keyframes buttonanime{
+  from{
+   transform: rotate(0deg); 
+  }
+  to{
+   transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,46 @@
+.container{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.login{
+  margin-top: 2rem;
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+
+  h1{
+   font-size: 2rem;
+   color: var(--white);
+   margin-bottom: 1rem;
+  }
+
+  form{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  form button{
+    height: 40px;
+    font-size: 1.2rem; 
+  }
+}
+
+.link{
+  margin-top: 1rem;
+  color: var(--white);
+  cursor: pointer;
+}
+
+@media (max-width: 620px){
+  .login{
+    width: 90%;
+  }
+}
