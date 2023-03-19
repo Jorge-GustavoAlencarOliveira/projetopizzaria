@@ -9,22 +9,29 @@ import { FiUpload } from 'react-icons/fi'
 import { api } from '@/Services/apiClient'
 import { toast } from 'react-toastify'
 
-type itemProps = {
-  name: string,
-  id: string
-}
-interface CategoryProps {
-  categoryList: itemProps[];
-} 
-const Product = ({categoryList}: CategoryProps) => {
-  const [category, setCategoryList] = React.useState(categoryList || []);
+// type itemProps = {
+//   name: string,
+//   id: string
+// }
+// interface CategoryProps {
+//   categoryList: itemProps[];
+// } 
+const Product = () => {
+  const [category, setCategoryList] = React.useState([]);
   const [categselect, setCategselect] = React.useState('');
   const [img, setimg] = React.useState(null);
   const [avatar, setAvatar] = React.useState(null);
   const [name, setName] = React.useState('')
   const [price, setPrice] = React.useState('')
   const [description, setDescription] = React.useState('')
-
+   
+  React.useEffect(() =>{
+    async function listCategory(){
+      const response = await api.get('/category');
+      setCategoryList(response.data.categorias);
+    }
+    listCategory()
+  },[])
 
   function handleFiles (event:ChangeEvent<HTMLInputElement>){
     if(!event.target.files){
@@ -134,13 +141,13 @@ const Product = ({categoryList}: CategoryProps) => {
 export default Product
 
 export const getServerSideProps = canSSRAuth(async(ctx)=>{
-  const apiClient = setupAPICliente(ctx)
-  const response = await apiClient.get('/category');
-  const categories = response.data.categorias;
+  // const apiClient = setupAPICliente(ctx)
+  // const response = await apiClient.get('/category');
+  // const categories = response.data.categorias;
       // console.log(categories)  
   return{
     props:{
-      categoryList: categories
+      // categoryList: categories
      }
   }
 })
