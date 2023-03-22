@@ -23,7 +23,7 @@ const id = () => {
    if( array?.length !== 0){
     setAdvanced(false)
    }
-   return () => setItemAdd(JSON.parse(productStorage) || [])
+   setItemAdd(JSON.parse(productStorage) || [])
   },[])
   
   React.useEffect(() =>{
