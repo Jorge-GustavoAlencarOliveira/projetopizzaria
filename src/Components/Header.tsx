@@ -6,6 +6,7 @@ import Image from 'next/image'
 import {FiLogOut} from 'react-icons/fi'
 import { AuthContext } from '@/Contexts/AuthContext'
 import {useRouter} from 'next/router'
+
 const Header = () => {
   const {pathname} = useRouter();
   const {signOut} = React.useContext(AuthContext) 
@@ -16,10 +17,20 @@ const Header = () => {
           <Image src={Logo} alt='Logo' width={190} height={60}/>
         </Link>
         <nav>
-          <Link href='/category' className={pathname.startsWith('/category') ? 'active' : ''} >Categoria</Link>
-          <Link href='/product'
-          className={pathname.startsWith('/product') ? 'active' : ''}
-          >Cardápio</Link>
+          <Link 
+            href='/order'
+            className={pathname.startsWith('/order') ? 'active' :
+            ''}>Pedido
+          </Link>
+          <Link 
+            href='/category' 
+            className={pathname.startsWith('/category') ? 'active' : 
+            ''} >Categoria</Link>
+          <Link 
+            href='/product'
+            className={pathname.startsWith('/product') ? 'active' :
+             ''}>Produto</Link>
+         
           <button onClick={signOut}>
             <FiLogOut size={23} color='#fff'/>
           </button>
