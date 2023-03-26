@@ -5,7 +5,7 @@ import { signOut } from '@/Contexts/AuthContext';
 export function setupAPICliente(ctx = undefined){
   let cookies = parseCookies(ctx);
   const api = axios.create({
-    baseURL: 'https://pizzariabackend.vercel.app',
+    baseURL: 'http://localhost:3333',
     headers: {
       Authorization: `Bearer ${cookies['@nextauth.token']}`
     }
